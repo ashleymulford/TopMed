@@ -1,3 +1,4 @@
+#Import libraries
 library(data.table)
 library(dplyr)
 library(qqman)
@@ -10,8 +11,10 @@ library(tibble)
 #Create color vector
 colors<-sequential_hcl(4,"SunsetDark")
 
+#Read file
 CAU_pqtl<-fread("/home/ashley/TopMed/trans_eQTLs_CAU_pqtl_trans_10e-4.txt")
 
+#Split snp col into two cols, chr and bp
 for(snp in CAU_pqtl$snps){
   snpID<-strsplit(snp, ":")
   chrom<-snpID[[1]][1]
@@ -30,10 +33,11 @@ for(snp in CAU_pqtl$snps){
     bp_list<-c(bp)}
 }  
 
+#Add cols
 CAU_pqtl<-add_column(CAU_pqtl, chr = chr_list, .before = "gene")
 CAU_pqtl<-add_column(CAU_pqtl, bp = bp_list, .before = "gene")
 
-
+#Make list of proteins
 for (protein in CAU_pqtl$gene){
   if(exists("proteins_list")){
     proteins_list<-append(proteins_list, protein)}
@@ -41,9 +45,10 @@ for (protein in CAU_pqtl$gene){
     proteins_list<-c(protein)}
 }
 
+#Unique proteins only
 protein_set<-unique(proteins_list)
 
-
+#Make manhattan plot for each protein
 for(protein in protein_set){
   CAU_pqtl_man<-filter(CAU_pqtl, CAU_pqtl$gene==protein)
   png(filename = "CAU_pqtl_" %&% protein %&% ".manplot.png", res=100)

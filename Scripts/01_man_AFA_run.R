@@ -1,4 +1,4 @@
-#import libraries
+#Import libraries
 library(data.table)
 library(dplyr)
 library(qqman)
@@ -11,10 +11,10 @@ library(tibble)
 #Create color vector
 colors<-sequential_hcl(4,"SunsetDark")
 
-#read file
+#Read file
 AFA_pqtl<-fread("/home/ashley/TopMed/trans_eQTLs_AFA_pqtl_trans_10e-4.txt")
 
-#split snp col into two cols, chr and bp
+#Split snp col into two cols, chr and bp
 for(snp in AFA_pqtl$snps){
   snpID<-strsplit(snp, ":")
   chrom<-snpID[[1]][1]
@@ -33,11 +33,11 @@ for(snp in AFA_pqtl$snps){
     bp_list<-c(bp)}
 }  
 
-#add cols
+#Add cols
 AFA_pqtl<-add_column(AFA_pqtl, chr = chr_list, .before = "gene")
 AFA_pqtl<-add_column(AFA_pqtl, bp = bp_list, .before = "gene")
 
-#make list of proteins
+#Make list of proteins
 for (protein in AFA_pqtl$gene){
   if(exists("proteins_list")){
     proteins_list<-append(proteins_list, protein)}
@@ -45,10 +45,10 @@ for (protein in AFA_pqtl$gene){
     proteins_list<-c(protein)}
 }
 
-#unique proteins only
+#Unique proteins only
 protein_set<-unique(proteins_list)
 
-#make manhattan plot for each protein
+#Make manhattan plot for each protein
 for(protein in protein_set){
   AFA_pqtl_man<-filter(AFA_pqtl, AFA_pqtl$gene==protein)
   png(filename = "AFA_pqtl_" %&% protein %&% ".manplot.png", res=100)

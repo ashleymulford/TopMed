@@ -103,7 +103,7 @@ for (protein in AFA_peaks_chrs_trans$gene){
 #Make set
 trans_protein_set<-unique(trans_proteins_list)
 
-#Make manhattan plots for each possibly trans protein
+#Make manhattan plots for each possible trans protein
 for(protein in trans_protein_set){
   AFA_pqtl_manhatt<-filter(AFA_pqtl_man, AFA_pqtl_man$gene==protein)
   png(filename = "/home/ashley/TopMed/Sig_Trans_Man_Plots/AFA_pqtl_" %&% protein %&% ".manplot.png", res=100)

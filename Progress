@@ -7,7 +7,12 @@
   #2 QTLs - outputed by Ryan
   
   #3 Generate Manhattan Plots:
+    #Make all:
     Script: 01_man_pop_run.R
+    #Make significant with threshold of 5e-20 for AFA, CAU, and HIS and 5e-12 for CHN:
+      #also determines which are possibly trans based on pvals/peaks
+    Script: 01_man_pop_sig_run.R
+    
   
   
   

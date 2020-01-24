@@ -11,7 +11,7 @@ library(tibble)
 #Create color vector
 colors<-sequential_hcl(4,"SunsetDark")
 
-#Read in file and filter for only significant p-vals (threshol chosen: 5e-20)
+#Read in file and filter for only significant p-vals (threshold chosen: 5e-20)
 AFA_pqtl<-fread("/home/ashley/TopMed/trans_eQTLs_AFA_pqtl_trans_10e-4.txt")
 AFA_pqtl_sig<-filter(AFA_pqtl, AFA_pqtl$pvalue<5e-20)
 

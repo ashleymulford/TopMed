@@ -13,6 +13,12 @@
       #also determines which are possibly trans based on pvals/peaks
     Script: 01_man_pop_sig_run.R
     
+  #4 Determine cis/trans - ryan did this
+  #5 Run Dap G - ryan did this
+    #output data for model building
+  #6 Run elastic net
+    #builds models
+    
   
   
   

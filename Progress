@@ -18,6 +18,9 @@
     #output data for model building
   #6 Run elastic net
     #builds models
+      #baseline models: all cis snps
+      #finemapped models: with dapg adjustment (1-pip)
+      #multiethnic finemapped models:
     
   
   
